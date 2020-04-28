@@ -28,6 +28,6 @@ public class TableServiceImpl implements TableService {
 
     @Override
     public BaseResponse processFetchTabledata() throws JAXBException, Exception {
-        return null;
+        return tableRepository.fetchTableDetails();
     }
 }

@@ -33,7 +33,7 @@ public class OrderController {
     @PostMapping(value = NameSpaceConstants.update_order.URL)
     public ResponseEntity<BaseResponse> processUpdateOrder(@RequestBody OrderModel request) throws Exception, IllegalArgumentException {
         log.info("OrderController :: processUpdateOrder() :: TableID :: {} :: Request :: {}", request.getFoodID(), request);
-        BaseResponse response = orderService.processAddOrder(request);
+        BaseResponse response = orderService.processUpdateOrder(request);
         log.info("OrderController :: processUpdateOrder() :: TableID :: {} :: Response :: {}", request.getFoodID(), response);
         return ResponseEntity.ok(response);
     }

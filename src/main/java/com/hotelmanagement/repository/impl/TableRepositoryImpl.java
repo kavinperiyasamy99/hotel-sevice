@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Slf4j
@@ -73,6 +74,32 @@ public class TableRepositoryImpl {
             statusMessage = StatusMessage.builder()
                     .code(MessageCodes.ERROR)
                     .description(MessageCodes.DELETE_TABLE_ERROR_DESC)
+                    .build();
+        }
+        return BaseResponse.builder()
+                .status(status)
+                .statusMessage(statusMessage)
+                .data(data)
+                .build();
+    }
+
+    public BaseResponse fetchTableDetails() {
+        try {
+
+            List<TableEntity> tableEntityList = tableRepository.findAll();
+            status = MessageCodes.SUCCESS_MSG;
+            statusMessage = StatusMessage.builder()
+                    .code(MessageCodes.SUCCESS)
+                    .description(MessageCodes.TABLE_Detail_SUCCESS_DESC)
+                    .build();
+            data = tableEntityList;
+
+        } catch (Exception e) {
+            log.error("Error while Retrieving Table Details, Exception: {}", e);
+            status = MessageCodes.ERROR_MSG;
+            statusMessage = StatusMessage.builder()
+                    .code(MessageCodes.ERROR)
+                    .description(MessageCodes.TABLE_Detail_ERROR_DESC)
                     .build();
         }
         return BaseResponse.builder()

@@ -80,4 +80,7 @@ public interface MessageCodes {
     public String BILLED_SUCCESS_DESC ="Billed retrieved SuccessFully";
     public String BILLED_ERROR_DESC ="Failed to retrieve bill";
 
+    public String TABLE_Detail_SUCCESS_DESC ="Table Details retrieved SuccessFully";
+    public String TABLE_Detail_ERROR_DESC ="Failed to retrieve Table Details";
+
 }

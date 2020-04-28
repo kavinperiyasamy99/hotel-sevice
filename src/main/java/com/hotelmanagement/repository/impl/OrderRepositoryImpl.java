@@ -72,7 +72,6 @@ public class OrderRepositoryImpl {
     }
     public BaseResponse updateOrder(OrderModel request) {
         try {
-
                 OrderEntity orderEntity=orderRespository.findByTrackID(request.getTrackID());
                 orderEntity.setOrderStatus(request.getOrderStatus());
                 orderRespository.save(orderEntity);
