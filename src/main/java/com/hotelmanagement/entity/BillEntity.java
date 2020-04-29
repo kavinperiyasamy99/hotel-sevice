@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -54,6 +55,14 @@ public class BillEntity {
     @Column(name = "mobile_number")
     @JsonProperty("MobileNumber")
     private String mobileNumber;
+
+    @JsonProperty("CreatedOn")
+    @Column(name = "createdOn")
+    private Date createdOn;
+
+    @JsonProperty("UpdatedOn")
+    @Column(name = "updatedOn")
+    private Date updatedOn;
 
     @OneToMany(mappedBy = "billEntity", cascade = CascadeType.ALL)
     @Cascade({ org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE_ORPHAN })

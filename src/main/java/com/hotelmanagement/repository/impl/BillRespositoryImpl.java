@@ -25,7 +25,7 @@ public class BillRespositoryImpl {
     Object data;
 
     public BaseResponse getBillDetails() {
-
+           data=null;
         try {
             List<BillEntity> billEntity = (List<BillEntity>) billRespository.findAll();
 

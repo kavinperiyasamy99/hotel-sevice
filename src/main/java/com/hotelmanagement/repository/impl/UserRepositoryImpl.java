@@ -33,10 +33,11 @@ public class UserRepositoryImpl {
                 .code(MessageCodes.ERROR)
                 .description(MessageCodes.INVALID_CREDENTIAL_DESC)
                 .build();
+          data=null;
         try {
             List<UserEntity> userEntity= userRepository.findAll();
             for(int i=0;i<userEntity.size();i++){
-               if(userEntity.get(i).getUsername().equals(request.getUserName()) && userEntity.get(i).getPassword().equals(request.getPassword())){
+               if(userEntity.get(i).getUsername().equals(request.getUserName()) && userEntity.get(i).getPassword().equals(request.getPassword()) && userEntity.get(i).getRole().equals(request.getRole())){
                    status = MessageCodes.SUCCESS_MSG;
                    statusMessage = StatusMessage.builder()
                            .code(MessageCodes.SUCCESS)
@@ -63,6 +64,7 @@ public class UserRepositoryImpl {
 
 
     public BaseResponse addUser(UserModel request){
+        data=null;
         try {
             UserEntity userEntity = new UserEntity();
             userEntity.setUserID(commonUtils.generateUUID());
@@ -96,6 +98,7 @@ public class UserRepositoryImpl {
                 .build();
     }
     public BaseResponse deleteUser(String userID){
+        data=null;
       try{
           UserEntity userEntity= userRepository.findByUserID(userID);
           userRepository.delete(userEntity);
@@ -122,6 +125,7 @@ public class UserRepositoryImpl {
 
 
    public BaseResponse getUser(){
+        data=null;
   try{
       List<UserEntity> userEntityList=userRepository.findAll();
       status = MessageCodes.SUCCESS_MSG;

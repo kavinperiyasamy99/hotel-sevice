@@ -1,11 +1,11 @@
 package com.hotelmanagement.repository.impl;
 
 
-
 import com.hotelmanagement.constant.MessageCodes;
 import com.hotelmanagement.entity.FoodmenuEntity;
 import com.hotelmanagement.io.*;
 import com.hotelmanagement.repository.FoodmenuRepository;
+import com.hotelmanagement.utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,20 +19,21 @@ import java.util.List;
 public class FoodmenuRepositoryImpl {
 
     @Autowired
+    CommonUtils commonUtils;
+    @Autowired
     FoodmenuRepository foodmenuRepository;
     String status = "";
     StatusMessage statusMessage = null;
     Object data;
 
     public BaseResponse addMenu(MenuModel request) {
-
-
+        data = null;
         try {
             FoodmenuEntity foodmenuEntity = foodmenuRepository.findByFoodID(request.getFoodID());
             if (StringUtils.isEmpty(foodmenuEntity)) {
 
                 foodmenuEntity = new FoodmenuEntity();
-                foodmenuEntity.setFoodID(request.getFoodID());
+                foodmenuEntity.setFoodID(commonUtils.generateUUID());
                 foodmenuEntity.setName(request.getName());
                 foodmenuEntity.setImage(request.getImage());
                 foodmenuEntity.setBaseAmount(request.getBaseAmount());
@@ -46,24 +47,24 @@ public class FoodmenuRepositoryImpl {
                 foodmenuEntity.setUpdatedOn(null);
 
             } else {
-                if(!StringUtils.isEmpty(request.getName()))
-                foodmenuEntity.setName(request.getName());
-                if(!StringUtils.isEmpty(request.getImage()))
-                foodmenuEntity.setImage(request.getImage());
-                if(!StringUtils.isEmpty(request.getBaseAmount()))
-                foodmenuEntity.setBaseAmount(request.getBaseAmount());
-                if(!StringUtils.isEmpty(request.getDiscount()))
-                foodmenuEntity.setDiscount(request.getDiscount());
-                if(!StringUtils.isEmpty(request.getTax()))
-                foodmenuEntity.setTax(request.getTax());
-                if(!StringUtils.isEmpty(request.getTotalAmount()))
-                foodmenuEntity.setTotalAmount(request.getTotalAmount());
-                if(!StringUtils.isEmpty(request.getFoodType()))
-                foodmenuEntity.setFoodType(request.getFoodType());
-                if(!StringUtils.isEmpty(request.getStatus()))
-                foodmenuEntity.setStatus(request.getStatus());
-                if(!StringUtils.isEmpty(request.getDescription()))
-                foodmenuEntity.setDescription(request.getDescription());
+                if (!StringUtils.isEmpty(request.getName()))
+                    foodmenuEntity.setName(request.getName());
+                if (!StringUtils.isEmpty(request.getImage()))
+                    foodmenuEntity.setImage(request.getImage());
+                if (!StringUtils.isEmpty(request.getBaseAmount()))
+                    foodmenuEntity.setBaseAmount(request.getBaseAmount());
+                if (!StringUtils.isEmpty(request.getDiscount()))
+                    foodmenuEntity.setDiscount(request.getDiscount());
+                if (!StringUtils.isEmpty(request.getTax()))
+                    foodmenuEntity.setTax(request.getTax());
+                if (!StringUtils.isEmpty(request.getTotalAmount()))
+                    foodmenuEntity.setTotalAmount(request.getTotalAmount());
+                if (!StringUtils.isEmpty(request.getFoodType()))
+                    foodmenuEntity.setFoodType(request.getFoodType());
+                if (!StringUtils.isEmpty(request.getStatus()))
+                    foodmenuEntity.setStatus(request.getStatus());
+                if (!StringUtils.isEmpty(request.getDescription()))
+                    foodmenuEntity.setDescription(request.getDescription());
                 foodmenuEntity.setUpdatedOn(new Date());
             }
             foodmenuRepository.save(foodmenuEntity);
@@ -90,6 +91,7 @@ public class FoodmenuRepositoryImpl {
     }
 
     public BaseResponse getMenuDetails() {
+        data = null;
         try {
             List<FoodmenuEntity> foodmenuEntityList = foodmenuRepository.findAll();
 
@@ -118,7 +120,7 @@ public class FoodmenuRepositoryImpl {
     }
 
     public BaseResponse deleteMenuItem(String foodID) {
-
+        data = null;
         try {
             FoodmenuEntity foodmenuEntity = foodmenuRepository.findByFoodID(foodID);
 

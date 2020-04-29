@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -34,6 +35,7 @@ public class OrderRepositoryImpl {
     Object data;
 
     public BaseResponse addOrder(OrderModel request) {
+        data=null;
             try {
             OrderEntity orderEntity= new OrderEntity();
             TableEntity tableEntity= tableRepository.findByTableID(request.getTableID());
@@ -71,6 +73,7 @@ public class OrderRepositoryImpl {
                 .build();
     }
     public BaseResponse updateOrder(OrderModel request) {
+        data=null;
         try {
                 OrderEntity orderEntity=orderRespository.findByTrackID(request.getTrackID());
                 orderEntity.setOrderStatus(request.getOrderStatus());
@@ -98,6 +101,7 @@ public class OrderRepositoryImpl {
     }
 
     public BaseResponse orderDetails(String tableID) {
+        data=null;
         try {
             TableEntity tableEntity=tableRepository.findByTableID(tableID);
             status = MessageCodes.SUCCESS_MSG;
@@ -122,6 +126,7 @@ public class OrderRepositoryImpl {
     }
 
     public BaseResponse billingOrder(BillModel request) {
+        data=null;
         try {
             float totalbillamout=0;
             TableEntity tableEntity=tableRepository.findByTableID(request.getTableID());
@@ -134,6 +139,7 @@ public class OrderRepositoryImpl {
                 billEntity.setGender(request.getGender());
                 billEntity.setMobileNumber(request.getMobileNumber());
                 billEntity.setPaymentStatus(request.getPaymentStatus());
+                billEntity.setCreatedOn(new Date());
                 List<BillItemEntity> billItemEntityList = new ArrayList<>();
                 if (orderEntityList != null) {
                     for (int i = 0; i < orderEntityList.size(); i++) {

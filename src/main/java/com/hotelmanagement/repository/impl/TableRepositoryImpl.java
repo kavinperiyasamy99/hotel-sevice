@@ -27,8 +27,8 @@ public class TableRepositoryImpl {
     Object data;
 
     public BaseResponse addtable(TableModel request) {
+        data=null;
         try {
-
             TableEntity tableEntity = new TableEntity();
             tableEntity.setTableID(request.getTableID());
             tableEntity.setTableName(request.getTableName());
@@ -57,8 +57,8 @@ public class TableRepositoryImpl {
     }
 
     public BaseResponse deletetable(String tableID) {
+        data=null;
         try {
-
             TableEntity tableEntity = tableRepository.findByTableID(tableID);
             tableRepository.delete(tableEntity);
             status = MessageCodes.SUCCESS_MSG;
@@ -84,8 +84,8 @@ public class TableRepositoryImpl {
     }
 
     public BaseResponse fetchTableDetails() {
+        data=null;
         try {
-
             List<TableEntity> tableEntityList = tableRepository.findAll();
             status = MessageCodes.SUCCESS_MSG;
             statusMessage = StatusMessage.builder()
