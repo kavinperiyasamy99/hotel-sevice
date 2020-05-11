@@ -43,6 +43,7 @@ public class UserRepositoryImpl {
                            .code(MessageCodes.SUCCESS)
                            .description(MessageCodes.LOGIN_SUCCESS_DESC)
                            .build();
+                   data=userEntity;
                }
             }
 

@@ -1,6 +1,7 @@
 package com.hotelmanagement.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +21,7 @@ public class UserEntity {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -39,7 +41,7 @@ public class UserEntity {
     @Column(name = "username")
     private String username;
 
-    @JsonProperty("Password")
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 
@@ -55,10 +57,12 @@ public class UserEntity {
     @Column(name = "age")
     private String age;
 
+    @JsonIgnore
     @JsonProperty("CreatedOn")
     @Column(name = "createdOn")
     private Date createdOn;
 
+    @JsonIgnore
     @JsonProperty("UpdatedOn")
     @Column(name = "updatedOn")
     private Date updatedOn;
