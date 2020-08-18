@@ -18,4 +18,9 @@ public class BillServiceImpl implements BillService {
     public BaseResponse processGetBilledDetails() throws JAXBException, Exception {
         return billRespository.getBillDetails();
     }
+
+    @Override
+    public BaseResponse processGetFilterBilledDetails(String orderID) throws JAXBException, Exception {
+        return billRespository.getFilterBillDetails(orderID);
+    }
 }

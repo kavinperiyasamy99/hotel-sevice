@@ -67,6 +67,10 @@ public interface NameSpaceConstants {
         public String URL = "/get_billed_details/V1.0";
     }
 
+    public interface filter_billed_details{
+        public String URL = "/filter_billed_details/V1.0";
+    }
+
     public interface CommonAPIRequestMapping {
         public String HEALTH_CHECK = "/health-check";
     }

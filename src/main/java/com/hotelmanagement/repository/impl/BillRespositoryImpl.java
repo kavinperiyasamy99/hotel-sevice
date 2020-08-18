@@ -50,5 +50,31 @@ public class BillRespositoryImpl {
                 .build();
     }
 
+    public BaseResponse getFilterBillDetails(String orderID) {
+        data=null;
+        try {
+            List<BillEntity> billEntity = (List<BillEntity>) billRespository.findByOrderIDStartingWith(orderID);
+
+            data = billEntity;
+            status = MessageCodes.SUCCESS_MSG;
+            statusMessage = StatusMessage.builder()
+                    .code(MessageCodes.SUCCESS)
+                    .description(MessageCodes.BILLED_SUCCESS_DESC)
+                    .build();
+        } catch (Exception e) {
+            log.error("Error while retrieving bill details , Exception: {}", e);
+            status = MessageCodes.ERROR_MSG;
+            statusMessage = StatusMessage.builder()
+                    .code(MessageCodes.ERROR)
+                    .description(MessageCodes.BILLED_ERROR_DESC)
+                    .build();
+        }
+        return BaseResponse.builder()
+                .status(status)
+                .statusMessage(statusMessage)
+                .data(data)
+                .build();
+    }
+
 
 }
