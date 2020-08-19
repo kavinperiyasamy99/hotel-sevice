@@ -1,5 +1,5 @@
-node  {
-
+pipeline  {
+   agent any
   stage('Checkout') {
     echo "checkout is running"
   }
