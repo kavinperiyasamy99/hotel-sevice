@@ -2,8 +2,6 @@ node  {
 
   stage('Checkout') {
     echo "checkout is running"
-    }
-
   }
 
   stage('Build') {
