@@ -1,5 +1,6 @@
 pipeline  {
    agent any
+   stages{
   stage('Checkout') {
     echo "checkout is running"
   }
@@ -32,7 +33,7 @@ pipeline  {
   stage('Promote') {
     echo "Push artifact"
   }
-
+}
  
 }
 
