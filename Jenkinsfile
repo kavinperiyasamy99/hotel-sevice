@@ -1,9 +1,6 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-
-               echo "Build"
+node ('jenkins-slave') {
+stage('Build') {
+    echo "Build"
                   docker.withRegistry('https://hub.docker.com', 'dockerHub') {
 
                       def customImage = docker.build("hotel-service/dockerwebapp")
@@ -11,8 +8,5 @@ pipeline {
                       /* Push the container to the custom Registry */
                       customImage.push()
                   }
-
-
-        }
-    }
+                  }
 }
