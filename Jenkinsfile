@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              echo "build"
+            
                   docker.withRegistry('https://hub.docker.com', 'dockerHub') {
 
                       def customImage = docker.build("hotel-service/dockerwebapp")
