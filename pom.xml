@@ -8,10 +8,10 @@
         <version>2.2.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>hotelmanagement</groupId>
-    <artifactId>hotelmanagement</artifactId>
+    <groupId>hotelmanagement1</groupId>
+    <artifactId>hotelmanagement1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hotelmanagement</name>
+    <name>hotelmanagement1</name>
     <description>hotel order management</description>
 
     <properties>
