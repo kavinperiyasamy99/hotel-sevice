@@ -2,8 +2,8 @@ pipeline {
     agent any
     stages {
         stage('Build') {
-            steps {
-            
+
+               echo "Build"
                   docker.withRegistry('https://hub.docker.com', 'dockerHub') {
 
                       def customImage = docker.build("hotel-service/dockerwebapp")
@@ -12,7 +12,7 @@ pipeline {
                       customImage.push()
                   }
 
-            }
+
         }
     }
 }
