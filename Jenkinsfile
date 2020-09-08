@@ -1,7 +1,7 @@
 node {
 stage('Build') {
     echo "Build"
-                  docker.withRegistry('https://hub.docker.com', 'dockerHub') {
+                  docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
 
                       def customImage = docker.build("hotel-service/dockerwebapp")
 
