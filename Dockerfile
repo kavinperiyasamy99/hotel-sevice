@@ -1,8 +1,8 @@
 
-#FROM java:8
-#EXPOSE 8085
-#ADD /target/demo-0.0.1-SNAPSHOT.jar demo-0.0.1-SNAPSHOT.jar
-#ENTRYPOINT ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar"]
+FROM java:8
+EXPOSE 8085
+ADD /target/hotelmanagement-0.0.1-SNAPSHOT.jar demo-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar", "hotelmanagement-0.0.1-SNAPSHOT.jar"]
 
 
 
@@ -31,26 +31,20 @@
 
 
 
+
+
+
+#FROM frolvlad/alpine-oraclejre8
+#VOLUME /tmp
 #
-#FROM java:8
+#RUN apk --update --no-cache add build-base less git openssh bash curl maven
+#
 #RUN mkdir -p /hotelmanagement-service
 #WORKDIR /hotelmanagement-service
 #COPY ./ /hotelmanagement-service
+#
 #EXPOSE 8088
-#ADD /target/hotelmanagement-0.0.1-SNAPSHOT.jar hotelmanagement-0.0.1-SNAPSHOT.jar
-#ENTRYPOINT ["java", "-jar", "hotelmanagement-0.0.1-SNAPSHOT.jar"]
-
-FROM frolvlad/alpine-oraclejre8
-VOLUME /tmp
-
-RUN apk --update --no-cache add build-base less git openssh bash curl maven
-
-RUN mkdir -p /hotelmanagement-service
-WORKDIR /hotelmanagement-service
-COPY ./ /hotelmanagement-service
-
-EXPOSE 8088
-
-RUN mvn package -Dmaven.test.skip=true
-
-CMD ["./bin/docker-entrypoint.sh"]
+#
+#RUN mvn package -Dmaven.test.skip=true
+#
+#CMD ["./bin/docker-entrypoint.sh"]
