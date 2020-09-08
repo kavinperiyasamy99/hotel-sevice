@@ -1,4 +1,4 @@
-node ('jenkins-slave') {
+node {
 stage('Build') {
     echo "Build"
                   docker.withRegistry('https://hub.docker.com', 'dockerHub') {
